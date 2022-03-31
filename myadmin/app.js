@@ -13,7 +13,8 @@ var pasien = require('./routes/pasien');
 var expressValidator = require('express-validator');
 var methodOverride = require('method-override');
 var connection = require('express-myconnection');
-var mysql = require('mysql');
+var mysql = require('mysql2');
+require('dotenv').config();
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,11 +44,11 @@ type koneksi : single,pool and request
 -------------------------------------------*/
 app.use(
     connection(mysql,{
-        host: 'localhost',
-        user: 'root', // your mysql user
-        password : '', // your mysql password
-        port : 3306, //port mysql
-        database:'rumahsakit' // your database name
+        host: process.env.MYSQLHOST,
+        user: process.env.MYSQLUSER, // your mysql user
+        password : process.env.MYSQLPASSWORD, // your mysql password
+        port : process.env.MYSQLPORT, //port mysql
+        database:process.env.MYSQLDATABASE // your database name
     },'pool') //or single
 );
 app.use('/', index);
