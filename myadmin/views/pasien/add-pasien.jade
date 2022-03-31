@@ -1,0 +1,61 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Tambahkan Pasien
+            small it all starts here
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Lainnya 
+                li.active Here
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Pasien
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/pasien/add')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Nama Pasien
+                                    input(type='text',value='#{nama_pasien}',name='nama_pasien',placeholder='Masukkan Nama', autofocus).form-control
+                                .form-group
+                                    label
+                                        | Gender
+                                    input(type='text',name='jenis_kelamin',placeholder='Masukkan Gender').form-control
+                                .form-group
+                                    label
+                                        | Ruangan
+                                    input(type='text',name='ruangan',placeholder='Masukkan Ruangan').form-control
+                                .form-group
+                                    label
+                                        | Tanggal Masuk
+                                    input(type='text',name='tgl_masuk',placeholder='Masukkan Tanggal Masuk').form-control
+                                .form-group
+                                    label
+                                        | Alamat 
+                                    input(type='text',name='alamat',placeholder='Masukkan Alamat').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/pasien').btn.btn-primary.pull-right
+                                    | Back
